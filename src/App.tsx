@@ -5,15 +5,13 @@
  * @FilePath: /todo_list/src/App.tsx
  */
 import { useState } from 'react';
-import './App.css';
-// import { BrowserRouter, Route, Link } from 'react-router-dom';
-import { createReducer } from '@reduxjs/toolkit';
+import HeaderPart from './components/headerPart';
 
 function App() {
   return (
-    <>
-      <div>111</div>
-    </>
+    <div>
+      <HeaderPart />
+    </div>
   )
 }
 
