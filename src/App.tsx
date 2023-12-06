@@ -5,7 +5,7 @@
  * @FilePath: /todo_list/src/App.tsx
  */
 import { useState } from 'react';
-import HeaderPart from './containers/headerPart';
+import HeaderPart from './components/HeaderPart';
 
 function App() {
   return (

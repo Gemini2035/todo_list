@@ -28,17 +28,23 @@ class HoverTips extends Component<PropsType, StateType> {
 
     private hoverHandle_LEAVE = () => {
         clearTimeout(this.timer);
-        this.setState({ flag: false});
+        this.setState({ flag: false });
     }
-   
+
     render(): ReactNode {
-        const showComponents = (this.state.flag && <HoverTipsComponents { ...this.props as PropsType } />);
+        const showComponents = (this.state.flag && <HoverTipsComponents {...this.props as PropsType} />);
         return (
-            <div style={ {position: 'relative', height: '100%'} } onMouseEnter={ this.hoverHandle_ENTER } onMouseLeave={ this.hoverHandle_LEAVE}>
-                { showComponents }
-                { this.props.$innerNode }
+            <div style={{
+                position: 'relative',
+                height: '100%',
+                display: 'inherit',
+                justifyContent: 'inherit',
+                alignItems: 'inherit'
+            }} onMouseEnter={this.hoverHandle_ENTER} onMouseLeave={this.hoverHandle_LEAVE}>
+                {showComponents}
+                {this.props.$innerNode}
             </div>
-        ) 
+        )
     }
 }
 

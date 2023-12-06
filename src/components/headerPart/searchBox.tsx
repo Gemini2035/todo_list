@@ -1,16 +1,38 @@
-import SearchInput from "../../containers/headerPart/searchPart";
+import SearchInput from "../../containers/headerPart/SearchInput";
+import SearchIcon from "./searchBox/SearchIcon";
 import styled from "styled-components";
-
-const StyledInputBox = styled.div`
-    position: relative;
-    width: 50%;
-    height: 25px;
-`
+import HoverTips from "../../utils/hoverTitps";
 
 export default () => {
     return (
+
         <StyledInputBox>
-            <SearchInput />
+            <HoverTips $direction="left" $context="搜索" $innerNode={
+                <div className="search-container">
+                    <SearchIcon />
+                    <SearchInput />
+                </div>
+            } />
         </StyledInputBox>
     )
 }
+
+const StyledInputBox = styled.div`
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1.5;
+    cursor: default;
+    .search-container {
+        display: flex;
+        justify-content: center;
+        height: 75%;
+        background-color: var(--ms-main-white);
+        position: relative;
+        border-radius: 3px;
+        &:hover {
+            background-color: var(--ms-hover-gray-light);
+        }
+    }
+`

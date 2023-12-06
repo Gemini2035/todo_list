@@ -8,4 +8,7 @@
   --ms-main-blue-light: #2564cf;
   --ms-main-white: #fff;
   --ms-hover-color-light: #005A9E;
+  --ms-hover-gray-light: #f5f5f5;
+  --ms-hover-blue-light: rgb(0, 90, 158);
+  --ms-main-bg-light: #faf9f8;
 }
