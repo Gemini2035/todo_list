@@ -10,5 +10,8 @@
   --ms-hover-color-light: #005A9E;
   --ms-hover-gray-light: #f5f5f5;
   --ms-hover-blue-light: rgb(0, 90, 158);
+  --ms-drag-line-gray: #edebeb;
   --ms-main-bg-light: #faf9f8;
+  --ms-bg-shadow: rgba(0, 0, 0, 0.1);
+  --ms-button-hover: #e1dfd7
 }

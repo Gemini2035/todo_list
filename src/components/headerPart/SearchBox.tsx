@@ -1,7 +1,7 @@
 import SearchInput from "../../containers/headerPart/SearchInput";
 import SearchIcon from "./searchBox/SearchIcon";
 import styled from "styled-components";
-import HoverTips from "../../utils/hoverTitps";
+import HoverTips from "../../utils/hoverTips";
 
 export default () => {
     return (

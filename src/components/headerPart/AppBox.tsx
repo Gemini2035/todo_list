@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import H from "../../utils/hoverTitps/index";
+import H from "../../utils/hoverTips/index";
 
 const StyledContainer = styled.div`
 height: 100%;

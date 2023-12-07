@@ -1,7 +1,7 @@
 import AppBox from "./headerPart/AppBox";
 import AppTitle from "./headerPart/AppTitle";
+import FunctionBox from "./headerPart/FunctionBox";
 import SearchPart from "./headerPart/SearchBox";
-import BasicSetting from "../containers/headerPart/BasicSetting";
 import styled from "styled-components";
 
 export default () => {
@@ -10,10 +10,7 @@ export default () => {
             <AppBox />
             <AppTitle />
             <SearchPart />
-            <BasicSetting />
-            {/* <QAA /> */}
-            {/* <Notice /> */}
-            {/* <UserAvatar /> */}
+            <FunctionBox />
         </StyledHeader>
     )
 }
