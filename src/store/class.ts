@@ -1,15 +1,6 @@
-export enum ActionType {
-    LogType,
-    TodoType
-}
-
-export class ActionClass<T> {
-    type: ActionType;
+export interface ActionInterface<T> {
+    type: string;
     content: T;
-    constructor (type: ActionType, content: T) {
-        this.type = type;
-        this.content = content;
-    }
 }
 
 export class UserInfo {
@@ -23,4 +14,10 @@ export class TodoInfo {
     date = '';
     tag = '';
     state = false;
+}
+
+export interface SettingInfo {
+    name: string,
+    key: string,
+    content: {name: string, key: string, value: string}[]
 }

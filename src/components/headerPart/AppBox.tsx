@@ -5,7 +5,7 @@ import AppBreifIcon from "./appBox/AppBreifIcon";
 import DetailContainer from "./appBox/DetailContainer";
 
 export default () => {
-    const [openDetail, setOpenDetail] = useState(true);
+    const [openDetail, setOpenDetail] = useState(false);
     const changeOpenDetailState = (target: boolean) => {
         setOpenDetail(target);
     }
