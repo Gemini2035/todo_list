@@ -2,7 +2,9 @@
   margin: 0;
   padding: 0;
   transition: 0.6s ease-in-out;
+  font-family: SegoeUI-SemiBold-final, Segoe UI Semibold, SegoeUI-Regular-final, Segoe UI, "Segoe UI Web (West European)", Segoe, -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue, Tahoma, Helvetica, Arial, sans-serif !important;
 }
+
 :root {
   --ms-black: #000;
   --ms-main-blue-light: #2564cf;
@@ -14,4 +16,8 @@
   --ms-main-bg-light: #faf9f8;
   --ms-bg-shadow: rgba(0, 0, 0, 0.1);
   --ms-button-hover: #e1dfd7
+}
+
+body {
+  overflow: hidden;
 }

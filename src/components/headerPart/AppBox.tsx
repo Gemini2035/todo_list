@@ -1,52 +1,41 @@
 import styled from "styled-components";
-import H from "../../utils/hoverTips/index";
-
-const StyledContainer = styled.div`
-height: 100%;
-width: 48px;
-display: flex;
-align-items: center;
-justify-content: center;
-
-&:hover {
-    background-color: var(--ms-hover-color-light);
-    cursor: pointer;
-}
-
-.dot-canvas {
-    width: 50%;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-
-    .dot-item {
-        width: calc(80% / 3);
-        font-size: 1.5rem;
-        line-height: 0.25;
-        &::before {
-            content: '·';
-            color: var(--ms-main-white);
-        }
-    }
-}
-`
-
+import { useState } from "react";
+import AsideView from "../../utils/asideView";
+import AppBreifIcon from "./appBox/AppBreifIcon";
+import DetailContainer from "./appBox/DetailContainer";
 
 export default () => {
-    const dotArray = [];
-    for (let i = 0; i < 9; i++) {
-        dotArray.push(
-            <p key={i} className="dot-item" />
-        )
+    const [openDetail, setOpenDetail] = useState(true);
+    const changeOpenDetailState = (target: boolean) => {
+        setOpenDetail(target);
     }
     return (
-        <H $direction='right' $context='全部应用' $innerNode={
-            <StyledContainer>
-                <div className="dot-canvas" >
-                    {dotArray}
-                </div>
-            </StyledContainer>
-        }></H>
+        <>
+            <StyledAppBox onClick={() => changeOpenDetailState(!openDetail)}>
+                <AppBreifIcon />
+            </StyledAppBox>
+            <AsideView
+                $showModel={[openDetail, changeOpenDetailState]}
+                $direction="left"
+                $style={{ height: '100vh', top: 0, width: '320px', backgroundColor: '#fff' }}
+                $position="fixed"
+                $childNode={<DetailContainer $onChange={changeOpenDetailState} />}
+            />
+            {openDetail &&
+                (
+                    <div style={{ position: "fixed", top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0.5 }}
+                        onClick={() => changeOpenDetailState(false)}
+                    />
+                )
+            }
+        </>
     )
 }
+
+const StyledAppBox = styled.div`
+    &:hover {
+        background-color: var(--ms-hover-color-light);
+        cursor: pointer;
+        height: 100%;
+    }
+`

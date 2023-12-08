@@ -1,5 +1,5 @@
 import { Component, ReactNode } from 'react';
-import styled, { keyframes } from "styled-components";
+import styled, { CSSProperties, keyframes } from "styled-components";
 import DragLine from './DragLine';
 
 interface PropsType {
@@ -14,6 +14,7 @@ interface PropsType {
     $maxWidth?: number,
     $minWidth?: number,
     $childNode?: ReactNode
+    $style?: CSSProperties
 }
 
 interface StateType {
@@ -35,7 +36,7 @@ class AsideView extends Component<PropsType, StateType> {
     render(): ReactNode {
         return (
             this.props.$showModel[0] && (
-                <StyledAsideView {...this.props} style={{ width: this.state.width }}>
+                <StyledAsideView {...this.props} style={Object.assign(this.props.$style || {}, { width: this.state.width })}>
                     {this.props.$showButton && (
                         <p className='close-button' onClick={() => this.props.$showModel[1](false)}>
                             {this.props.$buttonText ? this.props.$buttonText : 'X'}
@@ -53,7 +54,7 @@ class AsideView extends Component<PropsType, StateType> {
 
 const AppearAnimate = (prop: 'left' | 'right') => {
     return (keyframes`
-        from { transform: translate3d(${ prop === 'left' ? '0' : '100%'}, 0, 0) }
+        from { transform: translate3d(${prop === 'left' ? '0' : '100%'}, 0, 0) }
         to { transform: translate3d(0, 0, 0) }
 `)
 }
@@ -66,6 +67,7 @@ const StyledAsideView = styled.div<PropsType>`
     position: ${props => props.$position};
     height: ${props => props.$height ? (props.$height + 'px') : 'calc(100vh - 48px)'};
     top: 48px;
+    z-index: 1;
     ${props => {
         switch (props.$direction) {
             case 'left': return {

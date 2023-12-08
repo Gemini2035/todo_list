@@ -23,6 +23,7 @@ const StyledInputBox = styled.div`
     justify-content: center;
     align-items: center;
     flex: 1.5;
+    overflow: hidden;
     cursor: default;
     .search-container {
         display: flex;
