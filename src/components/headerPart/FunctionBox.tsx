@@ -1,10 +1,16 @@
+/*
+ * @Date: 2023-12-09 14:54:06
+ * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
+ * @LastEditTime: 2023-12-09 17:03:54
+ * @FilePath: /todo_list/src/components/headerPart/FunctionBox.tsx
+ */
 import { ReactNode } from 'react'
 import styled from "styled-components";
 import BasicSetting from "./functionBox/BasicSetting";
 import FunctionItem from "../../containers/headerPart/FunctionItem";
 import { useState } from 'react'
 
-export default () => {
+const FunctionBox = () => {
     const functionArray: {key: number, hoverTitle: string,  icon: ReactNode, childNode: ReactNode, model: [boolean, (target: boolean) => void]}[] = [
         {
             key: 0,
@@ -58,6 +64,8 @@ export default () => {
         </StyledFunctionBox>
     )
 }
+
+export default FunctionBox;
 
 const StyledFunctionBox = styled.div`
     height: 100%;

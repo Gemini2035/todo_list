@@ -1,10 +1,16 @@
+/*
+ * @Date: 2023-12-09 14:54:06
+ * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
+ * @LastEditTime: 2023-12-09 17:00:19
+ * @FilePath: /todo_list/src/components/headerPart/appBox/AppBreifIcon.tsx
+ */
 import styled from "styled-components";
 
 interface PropType {
     $color?: string
 }
 
-export default (prop: PropType) => {
+const AppBreifIcon = (prop: PropType) => {
     return (
         <StyledAppBox title="全部应用" {...prop} >
             <div className="dot-canvas" >
@@ -17,6 +23,8 @@ export default (prop: PropType) => {
         </StyledAppBox>
     )
 }
+
+export default AppBreifIcon;
 
 const StyledAppBox = styled.div<PropType>`
     height: 100%;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default () => {
+const AppsIcon = () => {
     const iconInfoArray: {icon: string, href: string, name: string}[] = [
         {
             name: 'Outlook',
@@ -89,6 +89,8 @@ export default () => {
         </StyledAppsIcon>
     )
 }
+
+export default AppsIcon;
 
 const StyledAppsIcon = styled.div`
     width: 98%;

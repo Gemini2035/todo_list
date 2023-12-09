@@ -1,10 +1,16 @@
+/*
+ * @Date: 2023-12-09 14:54:06
+ * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
+ * @LastEditTime: 2023-12-09 17:03:03
+ * @FilePath: /todo_list/src/components/headerPart/AppBox.tsx
+ */
 import styled from "styled-components";
 import { useState } from "react";
 import AsideView from "../../utils/asideView";
 import AppBreifIcon from "./appBox/AppBreifIcon";
 import DetailContainer from "./appBox/DetailContainer";
 
-export default () => {
+const AppBox = () => {
     const [openDetail, setOpenDetail] = useState(false);
     const changeOpenDetailState = (target: boolean) => {
         setOpenDetail(target);
@@ -31,6 +37,8 @@ export default () => {
         </>
     )
 }
+
+export default AppBox;
 
 const StyledAppBox = styled.div`
     &:hover {

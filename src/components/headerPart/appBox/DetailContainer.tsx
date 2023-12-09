@@ -1,3 +1,9 @@
+/*
+ * @Date: 2023-12-09 14:54:06
+ * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
+ * @LastEditTime: 2023-12-09 17:00:06
+ * @FilePath: /todo_list/src/components/headerPart/appBox/DetailContainer.tsx
+ */
 import styled from "styled-components";
 import AppBreifIcon from "./AppBreifIcon";
 import AppsIcon from "./AppsIcon";
@@ -6,7 +12,7 @@ interface PropType {
     $onChange: (target: boolean) => void
 }
 
-export default (prop: PropType) => {
+const DetailContainer = (prop: PropType) => {
     return (
         <>
             <StyledDetailTitle onClick={() => prop.$onChange(false)}>
@@ -26,6 +32,8 @@ export default (prop: PropType) => {
         </>
     )
 }
+
+export default DetailContainer;
 
 const StyledDetailTitle = styled.div`
     display: flex;

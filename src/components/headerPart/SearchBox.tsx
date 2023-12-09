@@ -1,11 +1,16 @@
+/*
+ * @Date: 2023-12-09 14:54:06
+ * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
+ * @LastEditTime: 2023-12-09 17:04:24
+ * @FilePath: /todo_list/src/components/headerPart/SearchBox.tsx
+ */
 import SearchInput from "../../containers/headerPart/SearchInput";
 import SearchIcon from "./searchBox/SearchIcon";
 import styled from "styled-components";
 import HoverTips from "../../utils/hoverTips";
 
-export default () => {
+const SearchBox = () => {
     return (
-
         <StyledInputBox>
             <HoverTips $direction="left" $context="搜索" $innerNode={
                 <div className="search-container">
@@ -16,6 +21,8 @@ export default () => {
         </StyledInputBox>
     )
 }
+
+export default SearchBox;
 
 const StyledInputBox = styled.div`
     height: 100%;

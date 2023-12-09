@@ -1,3 +1,9 @@
+/*
+ * @Date: 2023-12-07 19:17:27
+ * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
+ * @LastEditTime: 2023-12-09 17:05:36
+ * @FilePath: /todo_list/src/containers/headerPart/SearchInput.tsx
+ */
 import { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
@@ -6,8 +12,8 @@ interface StateType {
     inputContent: string
 }
 
-class SearchInput extends Component<{}, StateType> {
-    constructor(prop: {}) {
+class SearchInput extends Component<Record<string, never>, StateType> {
+    constructor(prop: Record<string, never>) {
         super(prop);
         this.state = {
             isFocus: false,
