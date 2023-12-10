@@ -1,10 +1,10 @@
 /*
  * @Date: 2023-12-07 19:17:27
  * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
- * @LastEditTime: 2023-12-10 17:31:33
+ * @LastEditTime: 2023-12-10 17:32:58
  * @FilePath: /todo_list/src/containers/headerPart/SearchInput.tsx
  */
-import { Component, ReactNode, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { changeKeyWord, changeState } from '../../store/searchModule';
 import styled from 'styled-components';
