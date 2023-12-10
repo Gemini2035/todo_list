@@ -6,7 +6,7 @@
  */
 import { createSlice } from "@reduxjs/toolkit";
 
-export const MODULENAME = 'settings';
+export const SETTINGMODULENAME = 'settings';
 export enum ActionType {
   TOGGLE = 'toggle',
 }
@@ -26,7 +26,7 @@ const settingData: SettingInfo[] = [
 ];
 
 const SettingSlice = createSlice({
-  name: MODULENAME,
+  name: SETTINGMODULENAME,
   initialState: settingData,
   reducers: {
     [ActionType.TOGGLE]: (state: SettingInfo[], { payload }: { payload: { key: string; value: string } }) => {
