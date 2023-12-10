@@ -1,52 +1,50 @@
 /*
  * @Date: 2023-12-07 19:17:27
  * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
- * @LastEditTime: 2023-12-09 17:05:36
+ * @LastEditTime: 2023-12-10 17:31:33
  * @FilePath: /todo_list/src/containers/headerPart/SearchInput.tsx
  */
-import { Component, ReactNode } from 'react';
+import { Component, ReactNode, useState } from 'react';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { changeKeyWord, changeState } from '../../store/searchModule';
 import styled from 'styled-components';
+import { RootStoreType } from '../../store';
 
-interface StateType {
-    isFocus: boolean,
-    inputContent: string
-}
-
-class SearchInput extends Component<Record<string, never>, StateType> {
-    constructor(prop: Record<string, never>) {
-        super(prop);
-        this.state = {
-            isFocus: false,
-            inputContent: ''
-        }
+const SearchInput = () => {
+    const [isFocus, setIsFocus] = useState(false);
+    const dispatch = useDispatch();
+    const inputContent = useSelector((state: RootStoreType) => { return state.searchReducer.keyWord }, shallowEqual);
+    const focusHandle = () => {
+        setIsFocus(true);
+        dispatch(changeState(true));
+    }
+    const blurHandle = () => {
+        setIsFocus(false);
+    }
+    const deleteHandle = () => {
+        if (!isFocus) return;
+        blurHandle();
+        dispatch(changeKeyWord(''));
     }
 
-    private deleteHandle = () => {
-        if (!this.state.isFocus) return;
-        this.setState({ inputContent: '' });
-        console.log(this.state.inputContent)
-    }
-
-    render(): ReactNode {
-        return (
-            <>
-                <StyledInput
-                    onFocus={() => this.setState({ isFocus: true })}
-                    onBlur={() => this.setState({ isFocus: false })}
-                    type="text" placeholder={this.state.isFocus ? '搜索' : ''}
-                    value={this.state.inputContent}
-                    onChange={event => this.setState({ inputContent: event.target.value })}
-                />
-                {/* onMouseDown > onBlur > onClick */}
-                <StyledButton onMouseDown={this.deleteHandle}>
-                    {
-                        this.state.isFocus &&
-                        <p className='button-content'>x</p>
-                    }
-                </StyledButton>
-            </>
-        )
-    }
+    return (
+        <>
+            <StyledInput
+                onFocus={focusHandle}
+                onBlur={blurHandle}
+                type="text" placeholder={isFocus ? '搜索' : ''}
+                value={inputContent}
+                onChange={event => {dispatch(changeKeyWord(event.target.value))}}
+            />
+            {/* onMouseDown > onBlur > onClick */}
+            <StyledButton onMouseDown={deleteHandle}>
+                {
+                    isFocus &&
+                    <p className='button-content'>x</p>
+                }
+            </StyledButton>
+        </>
+    )
 }
 
 const StyledInput = styled.input`
