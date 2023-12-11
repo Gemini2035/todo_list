@@ -1,12 +1,13 @@
 /*
  * @Date: 2023-12-09 14:54:06
- * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
- * @LastEditTime: 2023-12-09 17:03:54
+ * @LastEditors: gemini2035 2530056984@qq.com
+ * @LastEditTime: 2023-12-11 17:42:11
  * @FilePath: /todo_list/src/components/headerPart/FunctionBox.tsx
  */
 import { ReactNode } from 'react'
 import styled from "styled-components";
 import BasicSetting from "./functionBox/BasicSetting";
+import Help from './functionBox/Help';
 import FunctionItem from "../../containers/headerPart/FunctionItem";
 import { useState } from 'react'
 
@@ -17,14 +18,14 @@ const FunctionBox = () => {
             icon: <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="m416-132-14-112q-21-6-46.5-20T313-294l-103 44-64-112 89-67q-2-12-3.5-25t-1.5-25q0-11 1.5-23.5T235-531l-89-67 64-110 102 43q20-17 43.5-30.5T401-716l15-112h128l14 113q26 9 45.5 20.5T644-665l106-43 64 110-93 70q4 14 4.5 25.5t.5 22.5q0 10-1 21.5t-4 28.5l91 68-64 112-104-45q-21 18-42 30.5T558-245l-14 113H416Zm24-28h78l15-109q30-8 53.5-21.5T636-329l100 43 40-68-88-66q5-18 6.5-32t1.5-28q0-15-1.5-28t-6.5-30l90-68-40-68-103 43q-17-19-47.5-37T532-691l-12-109h-80l-12 108q-30 6-55 20t-51 40l-100-42-40 68 87 65q-5 13-7 29t-2 33q0 15 2 30t6 29l-86 66 40 68 99-42q24 24 49 38t57 22l13 108Zm38-232q37 0 62.5-25.5T566-480q0-37-25.5-62.5T478-568q-37 0-62.5 25.5T390-480q0 37 25.5 62.5T478-392Zm2-88Z" /></svg>,
             childNode: <BasicSetting />,
             hoverTitle: '设置',
-            model: useState(true)
+            model: useState(false)
         },
         {
             key: 1,
             icon:  <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960" width="24"><path d="M462-344q0-47 17.5-84t71.5-84q35-32 52.5-62.5T621-643q0-57-39.5-95T474-776q-52 0-84 22t-53 59l-25-13q27-47 66-71.5t96-24.5q84 0 129.5 48.5T649-643q0 42-18.5 78.5T578-499q-57 49-72.5 81.5T490-344h-28Zm12 212q-11 0-19.5-8.5T446-160q0-11 8.5-19.5T474-188q11 0 19.5 8.5T502-160q0 11-8.5 19.5T474-132Z"/></svg>,
-            childNode: <></>,
+            childNode: <Help />,
             hoverTitle: '帮助与反馈',
-            model: useState(false)
+            model: useState(true)
         },
         {
             key: 2,
