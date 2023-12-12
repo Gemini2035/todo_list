@@ -1,6 +1,16 @@
+/*
+ * @Author: Gemini2035 76091679+Gemini2035@users.noreply.github.com
+ * @Date: 2023-12-12 08:07:09
+ * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
+ * @LastEditTime: 2023-12-12 08:27:44
+ * @FilePath: /todo_list/src/components/headerPart/functionBox/Help.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import styled from "styled-components";
+import HelpButton from "../../../containers/headerPart/HelpButton";
 
 const Help = () => {
+  
   return (
     <StyledHelp>
       <h2 className="title">帮助</h2>
@@ -11,17 +21,7 @@ const Help = () => {
       >
         <span>了解详细信息</span>
       </a>
-      <div className="button-container">
-        <button
-          className="refresh-button"
-          onClick={() => {
-            console.log("TO Refresh");
-          }}
-        >
-          <span>同步</span>
-        </button>
-        <span className="result">最新</span>
-      </div>
+      <HelpButton />
     </StyledHelp>
   );
 };
@@ -49,28 +49,6 @@ const StyledHelp = styled.div`
     font-size: 0.875rem;
     &:hover {
       text-decoration: underline;
-    }
-  }
-  .button-container {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-    .refresh-button {
-      color: var(--ms-main-white);
-      font-weight: bold;
-      background: var(--ms-main-blue-light);
-      height: 32px;
-      width: 52px;
-      border: none;
-      border-radius: 5px;
-      &:hover {
-        cursor: pointer;
-      }
-    }
-    .result {
-        font-size: 0.875rem;
-        padding: 5px;
-        font-weight: 600;
     }
   }
 `;
