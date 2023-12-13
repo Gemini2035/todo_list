@@ -1,18 +1,35 @@
 import styled from "styled-components";
+import { useSelector, useDispatch, shallowEqual } from "react-redux";
+import { RootStoreType, AppDispatch } from "../../store";
+import { changeState } from "../../store/refreshModule";
 
 const HelpButton = () => {
+  const state = useSelector((store: RootStoreType) => {
+    return store.refreshReducer;
+  }, shallowEqual);
+  const dispatch: AppDispatch = useDispatch();
+  const randomChange = () => {
+    const randomNumber = Math.random();
+    dispatch(changeState('refreshing'));
+    setTimeout(() => dispatch(changeState(randomNumber > 0.5? 'success' : 'fail')), 1000);
+  }
+
   return (
     <StyledHelpButton>
       <div className="button-container">
         <button
           className="refresh-button"
-          onClick={() => {
-            console.log("TO Refresh");
-          }}
+          onClick={() => randomChange()}
         >
           <span>同步</span>
         </button>
-        <span className="result">最新</span>
+        <span className="result">
+          {state.refreshState === "success"
+            ? "最新"
+            : state.refreshState === "refreshing"
+            ? "正在进行同步"
+            : "同步失败"}
+        </span>
       </div>
     </StyledHelpButton>
   );

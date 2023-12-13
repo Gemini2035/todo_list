@@ -36,7 +36,7 @@ class AsideView extends Component<PropsType, StateType> {
     render(): ReactNode {
         return (
             this.props.$showModel[0] && (
-                <StyledAsideView {...this.props} style={Object.assign(this.props.$style || {}, { width: this.state.width })}>
+                <StyledAsideView {...this.props} style={Object.assign({...this.props.$style} || {}, { width: this.state.width })}>
                     {this.props.$showButton && (
                         <p className='close-button' onClick={() => this.props.$showModel[1](false)}>
                             {this.props.$buttonText ? this.props.$buttonText : 'X'}

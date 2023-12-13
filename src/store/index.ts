@@ -9,11 +9,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import settingReducer from "./basicSettingsModule/bassicSettingModule";
 import searchReducer from "./searchModule/searchModule";
 import refreshReducer from "./refreshModule/refreshModule";
+import userInfoReducer from "./userInfoModule/userInfoModule";
+
 const RootStore = configureStore({
     reducer: {
         settingReducer,
         searchReducer,
-        refreshReducer
+        refreshReducer,
+        userInfoReducer        
     },
 })
 export default RootStore;
