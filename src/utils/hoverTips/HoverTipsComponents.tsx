@@ -1,12 +1,14 @@
 import styled, { keyframes } from "styled-components";
 
-export default (props: { $direction: string, $context: string }) => {
+const HoverTips = (props: { $direction: string, $context: string }) => {
     return (
         <StyledHoverTip {...props}>
             <p className="tips">{props.$context}</p>
         </StyledHoverTip>
     )
 }
+
+export default HoverTips;
 
 const AppearAnimate = keyframes`
     from { opacity: 0; }

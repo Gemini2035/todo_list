@@ -41,6 +41,7 @@ const AppBox = () => {
 export default AppBox;
 
 const StyledAppBox = styled.div`
+    transition: none;
     &:hover {
         background-color: var(--ms-hover-color-light);
         cursor: pointer;

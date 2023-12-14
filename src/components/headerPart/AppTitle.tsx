@@ -19,6 +19,7 @@ const StyledTitle = styled.p`
     font-weight: bold;
     word-spacing: nowrap;
     min-width: 50px;
+    margin-left: 5px;
     &:hover {
         cursor: pointer;
         text-decoration: underline;

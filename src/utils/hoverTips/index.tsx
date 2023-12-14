@@ -1,5 +1,5 @@
 import { Component, ReactNode } from "react";
-import HoverTipsComponents from "./hoverTipsComponents";
+import HoverTipsComponents from "./HoverTipsComponents";
 
 type Direction = 'topLeft' | 'topMiddle' | 'topRight' | 'bottomLeft' | 'bottomMiddle' | 'bottomRight' | 'left' | 'right';
 interface PropsType {

@@ -1,3 +1,11 @@
+/*
+ * @Author: gemini2035 2530056984@qq.com
+ * @Date: 2023-12-07 11:26:15
+ * @LastEditors: gemini2035 2530056984@qq.com
+ * @LastEditTime: 2023-12-14 10:52:08
+ * @FilePath: \todo_list\src\utils\asideView\DragLine.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import React, { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
@@ -5,7 +13,7 @@ interface PropsType {
     $onChange: (width: number, height: number) => void; // 宽高变化函数
 }
 
-export default (props: PropsType) => {
+const DragLine = (props: PropsType) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isDragging, setIsDragging] = useState(false);
     const initialMouseX = useRef(0); // 初始x值
@@ -40,6 +48,7 @@ export default (props: PropsType) => {
             document.removeEventListener('mousemove', handleMouseMove);
             document.removeEventListener('mouseup', handleMouseUp);
         };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [isDragging, initialMouseX, initialMouseY, props.$onChange]);
 
     /** 监听鼠标按下事件 改变初始值 **/
@@ -58,6 +67,8 @@ export default (props: PropsType) => {
         />
     );
 };
+
+export default DragLine;
 
 const StyledDragLine = styled.div<{ $isDragging: boolean }>`
     position: absolute;

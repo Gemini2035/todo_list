@@ -5,11 +5,13 @@
  * @FilePath: /todo_list/src/App.tsx
  */
 import HeaderPart from './components/HeaderPart';
+import MainPart from './components/MainPart';
 
 function App() {
   return (
     <div>
       <HeaderPart />
+      <MainPart />
     </div>
   )
 }

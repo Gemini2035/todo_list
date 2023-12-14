@@ -29,5 +29,5 @@ const StyledHeader = styled.div`
     justify-content: space-between;
     height: 5vh;
     background-color: var(--ms-main-blue-light);
-    height: 48px;
+    height: var(--headpart-height);
 `
