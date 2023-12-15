@@ -11,6 +11,7 @@ import searchReducer from "./searchModule/searchModule";
 import refreshReducer from "./refreshModule/refreshModule";
 import userInfoReducer from "./userInfoModule/userInfoModule";
 import taskReducer from "./taskModule/taskModule";
+import listGroupReducer from "./listGroupModule/listGroupModule"
 
 const RootStore = configureStore({
     reducer: {
@@ -18,7 +19,8 @@ const RootStore = configureStore({
         searchReducer,
         refreshReducer,
         userInfoReducer,
-        taskReducer
+        taskReducer,
+        listGroupReducer
     },
 })
 export default RootStore;

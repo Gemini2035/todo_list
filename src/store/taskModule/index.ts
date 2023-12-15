@@ -22,4 +22,4 @@ export const deleteTask = (payload: number) => ({
 export const addTask = (payload: TaskInfo) => ({
   type: typeFormate<ActionType>(TASKMODULENAME, ActionType.ADDTASK),
   payload
-})
+});

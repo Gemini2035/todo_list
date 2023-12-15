@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-13 17:14:28
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-14 11:04:36
+ * @LastEditTime: 2023-12-15 09:34:22
  * @FilePath: \todo_list\src\store\taskModule\taskModule.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -26,11 +26,12 @@ export interface TaskInfo {
   duplyType?: string;
   classify?: 'orange' | 'red' | 'yellow' | 'blue' | 'green' | 'purple';
   fileList?: string[];
-  endDay?: string;
+  deadTime?: string;
   remindMe?: string;
   group?: string;
   tips?: string;
   lastEdit?: number;
+  assignedToMe?: boolean;
 }
 
 const initData: TaskInfo[] = [];
