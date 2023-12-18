@@ -183,7 +183,10 @@ const TodayData = (props: PropType) => {
                 $innerNode={
                   <div
                     className="head-option-item"
-                    onClick={() => setSortOptionState(!sortOptionState)}
+                    onClick={() => {
+                        setGroupOptionState(false);
+                        setSortOptionState(!sortOptionState)
+                    }}
                   >
                     <svg
                       fill="currentColor"
@@ -217,7 +220,10 @@ const TodayData = (props: PropType) => {
                 $innerNode={
                   <div
                     className="head-option-item"
-                    onClick={() => setGroupOptionState(!groupOptionState)}
+                    onClick={() => {
+                        setSortOptionState(false);
+                        setGroupOptionState(!groupOptionState);
+                    }}
                   >
                     <svg
                       fill="currentColor"
