@@ -1,4 +1,13 @@
+/*
+ * @Author: gemini2035 2530056984@qq.com
+ * @Date: 2023-12-14 17:17:39
+ * @LastEditors: gemini2035 2530056984@qq.com
+ * @LastEditTime: 2023-12-18 10:00:19
+ * @FilePath: \todo_list\src\components\mainPart\sideAndData\sideBar\SideBarHeader.tsx
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 import styled from "styled-components";
+import SideButton from "./SideButton";
 
 interface PropType {
   $clickEvent: (target: boolean) => void;
@@ -7,21 +16,7 @@ interface PropType {
 const SideBarHeader = (props: PropType) => {
   return (
     <StyledSideBarHeader>
-      <button className="cls-btn" onClick={() => props.$clickEvent(false)}>
-        <svg
-          fill="currentColor"
-          aria-hidden="true"
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M2 4.5c0-.28.22-.5.5-.5h15a.5.5 0 010 1h-15a.5.5 0 01-.5-.5zm0 5c0-.28.22-.5.5-.5h15a.5.5 0 010 1h-15a.5.5 0 01-.5-.5zm.5 4.5a.5.5 0 000 1h15a.5.5 0 000-1h-15z"
-            fill="currentColor"
-          ></path>
-        </svg>
-      </button>
+      <SideButton {...props} />
     </StyledSideBarHeader>
   );
 };
@@ -32,15 +27,4 @@ const StyledSideBarHeader = styled.div`
   height: 48px;
   margin-top: 16px;
   padding: 0 24px;
-  .cls-btn {
-    border: none;
-    background-color: transparent;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    &:hover {
-      background-color: var(--ms-button-hover);
-    }
-  }
 `;

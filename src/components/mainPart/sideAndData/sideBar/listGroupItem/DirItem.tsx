@@ -7,7 +7,6 @@ interface PropType {
   $name: string;
   $path: string;
   $child?: ItemInfo[];
-  $lengthArray?: number[];
 }
 
 const DirItem = (props: PropType) => {
@@ -31,16 +30,25 @@ const DirItem = (props: PropType) => {
           </svg>
         )}
         <p className="group-name">{props.$name}</p>
-        <p className={openDir ? "arrow down" : "arrow"}>{">"}</p>
+        <p className={openDir ? "arrow down" : "arrow"} />
       </div>
       <div className="list-content">
-      {openDir && (props.$child && props.$child.length ? (
-      <div>
-        111
-      </div>
-      ) : (
-        <ListItem $name="拖到此处来添加列表" $path="" $prevent $staicStyle />
-      ))}
+        {openDir &&
+          (props.$child && props.$child.length ? (
+            [...props.$child].map((item) => {
+              return <ListItem 
+              $name={item.name}
+              $path={item.path}
+              />;
+            })
+          ) : (
+            <ListItem
+              $name="拖到此处来添加列表"
+              $path=""
+              $prevent
+              $staicStyle
+            />
+          ))}
       </div>
     </StyledDirItem>
   );
@@ -54,6 +62,7 @@ const StyledDirItem = styled.div`
   }
   padding: 12px 24px;
   font-size: 0.9rem;
+  width: 85%;
   .group-title {
     display: flex;
     align-items: center;
@@ -61,11 +70,16 @@ const StyledDirItem = styled.div`
     .group-name {
       margin-left: 16px;
       letter-spacing: 1px;
+      flex: 1.2;
     }
     .arrow {
-      margin-left: auto;
+      width: 5px;
+      height: 5px;
+      border-left: 1.5px solid var(--ms-black);
+      border-bottom: 1.5px solid var(--ms-black);
+      transform: rotate3d(0, 0, 1, -135deg);
       &.down {
-        transform: rotate3d(0, 0, 1, 90deg);
+        transform: rotate3d(0, 0, 1, -45deg);
       }
     }
   }

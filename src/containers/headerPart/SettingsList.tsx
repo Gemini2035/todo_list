@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-08 17:14:23
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-11 15:07:00
+ * @LastEditTime: 2023-12-18 11:28:13
  * @FilePath: \todo_list\src\containers\headerPart\SettingsList.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,7 +13,7 @@ import { toggle } from "../../store/basicSettingsModule";
 
 const SettingsList = () => {
   const settingsList = useSelector((state: RootStoreType) => {
-    return state.settingReducer;
+    return state.basicSettingReducer;
   }, shallowEqual);
   const dispatch: AppDispatch = useDispatch();
   return (

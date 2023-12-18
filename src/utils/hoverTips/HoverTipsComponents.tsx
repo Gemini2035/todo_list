@@ -130,8 +130,8 @@ const StyledHoverTip = styled.div<{ $direction: string }>`
             case 'topMiddle': {
                 return {
                     left: '50%',
-                    top: '100%',
-                    transform: 'translate3d(-50%, 0, 0)'
+                    top: '75%',
+                    transform: 'translate3d(-50%, 0, 0) rotate3d(0, 0, 1, -90deg)'
                 }
             }
             case 'topRight': {
