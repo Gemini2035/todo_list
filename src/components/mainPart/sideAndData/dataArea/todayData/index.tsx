@@ -5,6 +5,7 @@ import HoverTips from "../../../../../utils/hoverTips";
 import OptionsBox from "../../../optionsBox";
 import AsideView from "../../../../../utils/asideView";
 import AdviceView from "./AdviceView";
+import TodayDataList from "../../../../../containers/mainPart/TodayDataList";
 import timeFormatter from "../../../../../utils/timeFormatter";
 
 const titleIcon = (
@@ -184,8 +185,8 @@ const TodayData = (props: PropType) => {
                   <div
                     className="head-option-item"
                     onClick={() => {
-                        setGroupOptionState(false);
-                        setSortOptionState(!sortOptionState)
+                      setGroupOptionState(false);
+                      setSortOptionState(!sortOptionState);
                     }}
                   >
                     <svg
@@ -221,8 +222,8 @@ const TodayData = (props: PropType) => {
                   <div
                     className="head-option-item"
                     onClick={() => {
-                        setSortOptionState(false);
-                        setGroupOptionState(!groupOptionState);
+                      setSortOptionState(false);
+                      setGroupOptionState(!groupOptionState);
                     }}
                   >
                     <svg
@@ -280,9 +281,16 @@ const TodayData = (props: PropType) => {
           </div>
         </div>
         <div className="time">{timeFormatter(new Date().getTime())}</div>
-        <div className="maintain-content"></div>
+        <div className="data-area">
+          <TodayDataList $groupActive={groupOptionsList.find(item => item.optionModel[0])} $sortActive={sortOptionsList.find(item => item.optionModel[0])} />
+        </div>
       </StyledTodayData>
-      <AsideView $showModel={[adviceState, setAdviceState]} $showButton $style={{minWidth: '360px'}} $childNode={<AdviceView />} />
+      <AsideView
+        $showModel={[adviceState, setAdviceState]}
+        $showButton
+        $style={{ minWidth: "360px" }}
+        $childNode={<AdviceView />}
+      />
     </>
   );
 };
@@ -324,15 +332,14 @@ const StyledTodayData = styled.div`
       }
     }
   }
-  .maintain-content {
-    width: 100%;
-    height: 100px;
-    background-color: red;
-  }
   .time {
     font-size: 0.75rem;
     margin-top: -20px;
     padding-left: 40px;
     color: var(--ms-button-gray);
+  }
+  .data-area {
+    display: flex;
+    flex-direction: column;
   }
 `;

@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-14 15:53:02
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-18 10:07:04
+ * @LastEditTime: 2023-12-19 15:11:31
  * @FilePath: \todo_list\src\components\mainPart\sideAndData\sideBar\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -28,18 +28,16 @@ interface PropType {
 }
 
 const SideBar = (props: PropType) => {
-  const SideBarContent = () => {
-    return (
-      <StyledSideBar>
-        <SideBarHeader $clickEvent={props.$setSideState} />
-        <div className="main-content">
-          <LinkList />
-          <hr className="divider" />
-          <ListGroup />
-        </div>
-      </StyledSideBar>
-    );
-  };
+  const SideBarContent = (
+    <StyledSideBar>
+      <SideBarHeader $clickEvent={props.$setSideState} />
+      <div className="main-content">
+        <LinkList />
+        <hr className="divider" />
+        <ListGroup />
+      </div>
+    </StyledSideBar>
+  );
 
   return (
     <>
@@ -49,7 +47,7 @@ const SideBar = (props: PropType) => {
         $position={props.$overlayTrigger ? "absolute" : undefined}
         $style={{ top: 0, zIndex: 1, animation: "none" }}
         $showModel={[props.$sideState, props.$setSideState]}
-        $childNode={<SideBarContent />}
+        $childNode={SideBarContent}
       />
       {props.$sideState && props.$overlayTrigger && (
         <OverLay $clickEvent={props.$setSideState} />
