@@ -23,7 +23,7 @@ const monthDic = [
   "十二",
 ];
 
-export default (unixTime: number) => {
+export default (unixTime: number, type?: 'breif') => {
   try {
     const date = new Date(unixTime);
     const nowDay = new Date();
@@ -32,6 +32,15 @@ export default (unixTime: number) => {
     const D = date.getDate();
     const W = date.getDay();
     const NY = nowDay.getFullYear();
+    const NM = nowDay.getMonth();
+    const ND = nowDay.getDate();
+    if (type === 'breif') {
+      if (Y === NY && NM === M) {
+        if (D === ND + 1) return '明天';
+        if (D === ND) return '今天';
+        if (D === ND - 1) return '昨天';
+      }
+    }
     return `${Y === NY ? "" : (Y + '年')}${monthDic[M]}月 ${D}日星期${weekDic[W]}`;
   } catch {
     return `未知日期`;

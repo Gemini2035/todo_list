@@ -145,8 +145,7 @@ const StyledHoverTip = styled.div<{ $direction: string }>`
     }
     .tips {
         white-space: nowrap;
-        padding: 3px 2px;
-        font-size: 0.8rem;
-        letter-spacing: 1px;
+        padding: 5px 2px;
+        font-size: 0.75rem;
     }
 `

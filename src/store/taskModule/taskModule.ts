@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-13 17:14:28
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-19 17:36:13
+ * @LastEditTime: 2023-12-20 09:53:20
  * @FilePath: \todo_list\src\store\taskModule\taskModule.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -15,6 +15,8 @@ export enum ActionType {
   CHANGE = "changeInfo",
 }
 
+type ClassifyKey = "orange" | "red" | "yellow" | "blue" | "green" | "purple";
+
 export interface TaskInfo {
   key?: number;
   content?: string;
@@ -24,7 +26,7 @@ export interface TaskInfo {
   isToday?: boolean;
   startTime?: number;
   duplyType?: string;
-  classify?: Array<"orange" | "red" | "yellow" | "blue" | "green" | "purple">;
+  classify?: { key: ClassifyKey, name: string }[];
   fileList?: string[];
   deadTime?: number;
   remindMe?: number;
@@ -47,9 +49,12 @@ const initData: TaskInfo[] = [
     isToday: true,
     startTime: 1702953005411,
     duplyType: "daily",
-    classify: ["orange", "red"],
+    classify: [
+      { key: 'green', name: '绿色类别' },
+      { key: 'purple', name: '紫色类别' }
+    ],
     fileList: ["111", "222"],
-    deadTime: 1702957005411 + 1000000,
+    deadTime: 1702957005411 + 1101000000,
     remindMe: 1702957005411 + 500000,
     group: undefined,
     tips: "测试备注功能",
