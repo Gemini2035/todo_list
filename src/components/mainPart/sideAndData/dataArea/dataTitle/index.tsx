@@ -10,7 +10,7 @@ import { ReactNode, useState } from "react";
 import styled from "styled-components";
 import SideButton from "../../sideBar/SideButton";
 import HoverTips from "../../../../../utils/hoverTips";
-import OptionsBox from "../../../optionsBox";
+import OptionsBox from "../../../../../utils/optionsBox";
 
 interface PropType {
   $setSideState: (target: boolean) => void;

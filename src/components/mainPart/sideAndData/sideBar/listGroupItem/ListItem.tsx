@@ -39,7 +39,7 @@ const ListItem = (props: PropType) => {
   return (
     <StyledListItem>
       <NavLink
-        to={'/tasks/' + props.$path}
+        to={"/tasks/" + props.$path}
         className={({ isActive }) => {
           let className = "link-item";
           if (isActive) className += " active";
@@ -93,7 +93,7 @@ const StyledListItem = styled.div`
         height: 100%;
       }
       &:hover {
-        background-color: transparent;
+        background-color: rgb(239, 246, 252);
       }
     }
     &.static {

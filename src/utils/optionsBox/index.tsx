@@ -2,12 +2,12 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-18 16:18:05
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-18 16:58:52
+ * @LastEditTime: 2023-12-20 17:54:50
  * @FilePath: \todo_list\src\components\mainPart\optionsBox\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { ReactNode } from "react";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 
 interface PropType {
   $stateModel: [boolean, (target: boolean) => void];
@@ -23,6 +23,10 @@ interface OptionItem {
   optionModel?: [boolean, Function];
   themeItem?: boolean;
   printItem?: boolean;
+  needTopItem?: boolean;
+  childNode?: ReactNode;
+  style?: CSSProperties;
+  rightText?: string;
 }
 
 const OptionsBox = (props: PropType) => {
@@ -34,21 +38,29 @@ const OptionsBox = (props: PropType) => {
             <div className="options-title">{props.$title}</div>
             {[...props.$optionInfo].map((item) => {
               return (
-                <div
-                  className="options-item"
-                  key={item.name}
-                  onClick={() => {
-                    if (item.printItem) alert("打印功能");
-                    else {
-                        if (props.$clearOldState) props.$optionInfo.forEach(item => item.optionModel![1](false));
+                <>
+                  {item.needTopItem && <hr />}
+                  <div
+                    className="options-item"
+                    key={item.name}
+                    style={item.style}
+                    onClick={() => {
+                      if (item.printItem) alert("打印功能");
+                      else {
+                        if (props.$clearOldState)
+                          props.$optionInfo.forEach((item) =>
+                            item.optionModel![1](false)
+                          );
                         item.optionModel![1](!item.optionModel![0]);
-                    }
-                    props.$stateModel[1](false);
-                  }}
-                >
-                  {item.icon}
-                  <p>{item.name}</p>
-                </div>
+                      }
+                      props.$stateModel[1](false);
+                    }}
+                  >
+                    {item.icon}
+                    <p style={{flex: 1.1}}>{item.name}</p>
+                    {item.rightText && <p>{item.rightText}</p>}
+                  </div>
+                </>
               );
             })}
           </div>
@@ -72,7 +84,7 @@ const StyledOptionsBox = styled.div`
     max-width: 290px;
     border-radius: 4px;
     overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.133) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, 0.11) 0;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 3.2px 7.2px 0px, rgba(0, 0, 0, 0.1) 0;
     .options-title {
       display: flex;
       margin-bottom: 6px;

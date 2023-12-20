@@ -2,19 +2,21 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-18 16:12:56
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-20 11:03:39
+ * @LastEditTime: 2023-12-20 15:04:26
  * @FilePath: \todo_list\src\components\mainPart\taskItem\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { changeTask } from "../../../store/taskModule";
+import { changeTask } from "../../store/taskModule";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { RootStoreType, AppDispatch } from "../../../store";
-import { TaskInfo } from "../../../store/taskModule/taskModule";
-import HoverTips from "../../../utils/hoverTips";
-import timeFormatter from "../../../utils/timeFormatter";
+import { RootStoreType, AppDispatch } from "../../store";
+import { TaskInfo } from "../../store/taskModule/taskModule";
+import HoverTips from "../../utils/hoverTips";
+import timeFormatter from "../../utils/hooks/timeFormatter";
+import StateDot from "../../utils/stateDot";
+import timeCompare from "../../utils/hooks/timeCompare";
 
 interface PropInfo {
   $key?: number;
@@ -26,6 +28,10 @@ const TaskItem = (props: PropInfo) => {
     (store: RootStoreType) => store.taskReducer,
     shallowEqual
   ).find((item) => item.key === props.$key)!;
+  const isOvertime = timeCompare(
+    new Date().getTime(),
+    taskInfo.deadTime || Infinity
+  );
   const dispatch: AppDispatch = useDispatch();
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const changeState = (e: any, type: "done" | "mark") => {
@@ -48,11 +54,10 @@ const TaskItem = (props: PropInfo) => {
         $isMarked: taskInfo.isMarked,
       }}
     >
-      <NavLink
-        to={`id/${props.$key!.toString()}`}
-        className={(isActive) => (isActive ? "link-item active" : "link-item")}
-      >
-        <div className="dot" onClick={(e) => changeState(e, "done")} />
+      <NavLink to={`id/${props.$key!.toString()}`} className="link-item" end>
+        <div className="dot" onClick={(e) => changeState(e, "done")}>
+          <StateDot $state={taskInfo.hasDone} />
+        </div>
         <div className="content">
           <p className="content-title">{taskInfo.content}</p>
           <div className="content-tags">
@@ -69,9 +74,8 @@ const TaskItem = (props: PropInfo) => {
               </div>
             )}
             {taskInfo.deadTime && (
-              <div className="tag-item">
+              <div className={`tag-item ${isOvertime ? "overtime" : ""}`}>
                 <svg
-                  fill="currentColor"
                   aria-hidden="true"
                   width="16"
                   height="16"
@@ -79,12 +83,12 @@ const TaskItem = (props: PropInfo) => {
                   xmlns="http://www.w3.org/2000/svg"
                   focusable="false"
                 >
-                  <path
-                    d="M5.25 9a.75.75 0 100-1.5.75.75 0 000 1.5zM6 10.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM8 9a.75.75 0 100-1.5A.75.75 0 008 9zm.75 1.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm2-1.75a.75.75 0 100-1.5.75.75 0 000 1.5zM14 4.5A2.5 2.5 0 0011.5 2h-7A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7zM3 6h10v5.5c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 013 11.5V6zm1.5-3h7c.83 0 1.5.67 1.5 1.5V5H3v-.5C3 3.67 3.67 3 4.5 3z"
-                    fill="currentColor"
-                  ></path>
+                  <path d="M5.25 9a.75.75 0 100-1.5.75.75 0 000 1.5zM6 10.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zM8 9a.75.75 0 100-1.5A.75.75 0 008 9zm.75 1.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm2-1.75a.75.75 0 100-1.5.75.75 0 000 1.5zM14 4.5A2.5 2.5 0 0011.5 2h-7A2.5 2.5 0 002 4.5v7A2.5 2.5 0 004.5 14h7a2.5 2.5 0 002.5-2.5v-7zM3 6h10v5.5c0 .83-.67 1.5-1.5 1.5h-7A1.5 1.5 0 013 11.5V6zm1.5-3h7c.83 0 1.5.67 1.5 1.5V5H3v-.5C3 3.67 3.67 3 4.5 3z"></path>
                 </svg>
-                <span>{timeFormatter(taskInfo.deadTime, "breif")}</span>
+                <span style={{ marginLeft: "3px" }}>
+                  {timeFormatter(taskInfo.deadTime, "breif")}
+                </span>
+                {isOvertime && <span style={{ marginLeft: "3px" }}>到期</span>}
               </div>
             )}
             {taskInfo.duplyType && (
@@ -221,6 +225,7 @@ const StyledTaskItem = styled.div<StyledPropInfo>`
   width: 95%;
   margin: 0 auto;
   .link-item {
+    transition: 0.3s ease-in-out;
     display: flex;
     align-items: center;
     margin-top: 8px;
@@ -231,46 +236,14 @@ const StyledTaskItem = styled.div<StyledPropInfo>`
     box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.1),
       0px 1.6px 3.6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    .dot {
-      cursor: pointer;
-      position: relative;
-      --dot-width: 16px;
-      margin-left: 6px;
-      width: var(--dot-width);
-      height: var(--dot-width);
-      border-radius: 50%;
-      border: 1px solid;
-      border-color: ${(props) => props.$theme || "var(--ms-main-blue-light)"};
-      background-color: ${(props) =>
-        props.$hasDone
-          ? props.$theme || "var(--ms-main-blue-light)"
-          : "transparent"};
-      &:hover:before {
-        border-color: ${(props) =>
-          props.$hasDone
-            ? "var(--ms-main-white)"
-            : "var(--ms-main-blue-light)"};
-      }
-      &:before {
-        content: "";
-        position: absolute;
-        height: 8px;
-        width: 3px;
-        border-right: 1px solid;
-        border-bottom: 1px solid;
-        border-color: ${(props) =>
-          props.$hasDone ? "var(--ms-main-white)" : "transparent"};
-        top: 45%;
-        left: 50%;
-        transform: translate3d(-50%, -50%, 0) rotate3d(0, 0, 1, 45deg);
-      }
-    }
     .content {
       flex: 1.1;
       padding: 8px 14px;
       .content-title {
         font-size: 0.875rem;
         font-weight: 600;
+        text-decoration: ${(props) =>
+          props.$hasDone ? "line-through" : "initial"};
       }
       .content-tags {
         display: flex;
@@ -294,6 +267,14 @@ const StyledTaskItem = styled.div<StyledPropInfo>`
             border-radius: 50%;
             border: 1px solid;
             margin: 1px 4px 0;
+          }
+          &.overtime {
+            svg {
+              fill: var(--ms-error-red);
+            }
+            span {
+              color: var(--ms-error-red);
+            }
           }
         }
       }

@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-13 17:14:28
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-20 09:53:20
+ * @LastEditTime: 2023-12-20 13:52:45
  * @FilePath: \todo_list\src\store\taskModule\taskModule.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -39,7 +39,31 @@ export interface TaskInfo {
 const initData: TaskInfo[] = [
   {
     key: 1702957005411,
-    content: "测试单元",
+    content: "测试单元1",
+    isMarked: false,
+    steps: [
+      { content: "第一步", hasDone: true },
+      { content: "第二步", hasDone: false },
+    ],
+    hasDone: false,
+    isToday: true,
+    startTime: 1702953005411,
+    duplyType: "daily",
+    classify: [
+      { key: 'green', name: '绿色类别' },
+      { key: 'purple', name: '紫色类别' }
+    ],
+    fileList: ["111", "222"],
+    deadTime: 1702957005411 + 1101000000,
+    remindMe: 1702957005411 + 500000,
+    group: undefined,
+    tips: "测试备注功能",
+    lastEdit: 1702957005411 - 10000,
+    assignedToMe: false,
+  },
+  {
+    key: 1702957005410,
+    content: "测试单元2",
     isMarked: false,
     steps: [
       { content: "第一步", hasDone: true },

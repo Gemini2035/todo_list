@@ -2,11 +2,12 @@ import styled from "styled-components";
 import { useState } from "react";
 import DataTitle from "../dataTitle";
 import HoverTips from "../../../../../utils/hoverTips";
-import OptionsBox from "../../../optionsBox";
+import OptionsBox from "../../../../../utils/optionsBox";
 import AsideView from "../../../../../utils/asideView";
 import AdviceView from "./AdviceView";
-import TodayDataList from "../../../../../containers/mainPart/TodayDataList";
-import timeFormatter from "../../../../../utils/timeFormatter";
+import TodayDataList from "../../../../../containers/mainPart/TodayDataArea";
+import timeFormatter from "../../../../../utils/hooks/timeFormatter";
+import TaskAdd from "../../../../../containers/mainPart/TaskAdd";
 
 const titleIcon = (
   <svg
@@ -279,10 +280,14 @@ const TodayData = (props: PropType) => {
               />
             </div>
           </div>
+          <div className="time">{timeFormatter(new Date().getTime())}</div>
         </div>
-        <div className="time">{timeFormatter(new Date().getTime())}</div>
         <div className="data-area">
-          <TodayDataList $groupActive={groupOptionsList.find(item => item.optionModel[0])} $sortActive={sortOptionsList.find(item => item.optionModel[0])} />
+          <TaskAdd $addType="today" />
+          <TodayDataList
+            $groupActive={groupOptionsList.find((item) => item.optionModel[0])}
+            $sortActive={sortOptionsList.find((item) => item.optionModel[0])}
+          />
         </div>
       </StyledTodayData>
       <AsideView
@@ -301,10 +306,11 @@ const StyledTodayData = styled.div`
   width: 100%;
   padding: 0 24px;
   .title-container {
-    /* height: 72px; */
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin: 16px 24px;
+    position: relative;
     .right-btn {
       display: flex;
       align-items: center;
@@ -331,12 +337,14 @@ const StyledTodayData = styled.div`
         }
       }
     }
-  }
-  .time {
-    font-size: 0.75rem;
-    margin-top: -20px;
-    padding-left: 40px;
-    color: var(--ms-button-gray);
+    .time {
+      font-size: 0.75rem;
+      padding-left: 40px;
+      color: var(--ms-button-gray);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
   }
   .data-area {
     display: flex;
