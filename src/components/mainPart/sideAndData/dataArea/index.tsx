@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Route, Routes, useParams } from "react-router-dom";
-import TaskDetail from "../../TaskDetail";
+import TaskDetail from "../../../../containers/mainPart/taskDetail";
 import TodayData from "./todayData";
 
 interface PropType {

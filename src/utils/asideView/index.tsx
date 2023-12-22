@@ -40,7 +40,6 @@ class AsideView extends Component<PropsType, StateType> {
     private handleChange = (offsetX: number) => this.setState({ width: Math.max(300, (Math.min(window.innerWidth * 0.9, (this.state.width - offsetX)))) })
 
     render(): ReactNode {
-        console.log(this.state.width)
         return (
             this.props.$showModel[0] && (
                 <StyledAsideView {...this.props} style={Object.assign({...this.props.$style} || {}, { width: this.state.width, minWidth: this.state.width })}>
