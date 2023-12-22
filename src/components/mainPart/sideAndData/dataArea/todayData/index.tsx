@@ -32,6 +32,7 @@ interface PropType {
 }
 
 const TodayData = (props: PropType) => {
+  const [reverseFlag, setReverseFlag] = useState(false);
   const optionsList = [
     {
       name: "打印此列表",
@@ -76,6 +77,7 @@ const TodayData = (props: PropType) => {
           ></path>
         </svg>
       ),
+      key: 0,
     },
     {
       name: "到期日期",
@@ -96,6 +98,7 @@ const TodayData = (props: PropType) => {
           ></path>
         </svg>
       ),
+      key: 1,
     },
     {
       name: "字母顺序",
@@ -116,6 +119,7 @@ const TodayData = (props: PropType) => {
           ></path>
         </svg>
       ),
+      key: 2,
     },
     {
       name: "创建日期",
@@ -136,6 +140,7 @@ const TodayData = (props: PropType) => {
           ></path>
         </svg>
       ),
+      key: 3,
     },
   ];
   const [groupOptionState, setGroupOptionState] = useState(false);
@@ -159,6 +164,7 @@ const TodayData = (props: PropType) => {
           ></path>
         </svg>
       ),
+      key: 0,
     },
   ];
   const [adviceState, setAdviceState] = useState(false);
@@ -283,8 +289,70 @@ const TodayData = (props: PropType) => {
           <div className="time">{timeFormatter(new Date().getTime())}</div>
         </div>
         <div className="data-area">
+          <div className="active-box">
+            {sortOptionsList.find((item) => item.optionModel[0]) && (
+              <div className="sort-option">
+                <HoverTips
+                  $context="反转排列顺序"
+                  $direction="topMiddle"
+                  $delayTime={600}
+                  $innerNode={
+                    <div
+                      onClick={() => setReverseFlag(!reverseFlag)}
+                      className={`arrow ${reverseFlag ? "reverse" : undefined}`}
+                    />
+                  }
+                />
+                <p className="option-name">
+                  按{sortOptionsList.find((item) => item.optionModel[0])?.name}
+                  排序
+                </p>
+                <HoverTips
+                  $context="删除排序顺序选项"
+                  $direction="topMiddle"
+                  $delayTime={600}
+                  $innerNode={
+                    <p
+                      onClick={() =>
+                        sortOptionsList.find((item) =>
+                          item.optionModel[1](false)
+                        )
+                      }
+                    >
+                      x
+                    </p>
+                  }
+                />
+              </div>
+            )}
+            {groupOptionsList.find((item) => item.optionModel[0]) && (
+              <div className="group-option">
+                <p>
+                  按{groupOptionsList.find((item) => item.optionModel[0])!.name}
+                  分组
+                </p>
+                <HoverTips
+                  $context="删除按组分组选项"
+                  $direction="topMiddle"
+                  $delayTime={600}
+                  $innerNode={
+                    <p
+                      onClick={() =>
+                        groupOptionsList.find((item) =>
+                          item.optionModel[1](false)
+                        )
+                      }
+                    >
+                      x
+                    </p>
+                  }
+                />
+              </div>
+            )}
+          </div>
           <TaskAdd $addType="today" />
           <TodayDataList
+            $reverse={reverseFlag}
             $groupActive={groupOptionsList.find((item) => item.optionModel[0])}
             $sortActive={sortOptionsList.find((item) => item.optionModel[0])}
           />
@@ -304,6 +372,7 @@ export default TodayData;
 
 const StyledTodayData = styled.div`
   width: 100%;
+  height: 100%;
   padding: 0 24px;
   .title-container {
     display: flex;
@@ -349,5 +418,39 @@ const StyledTodayData = styled.div`
   .data-area {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    .active-box {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      padding: 8px 16px;
+      cursor: default;
+      .sort-option {
+        display: flex;
+        align-items: center;
+        font-size: 0.75rem;
+      }
+      .group-option {
+        display: flex;
+        align-items: center;
+        font-size: 0.75rem;
+      }
+      .arrow {
+        --arrow-size: 5px;
+        width: var(--arrow-size);
+        height: var(--arrow-size);
+        border-right: 1.5px solid var(--ms-black);
+        border-bottom: 1.5px solid var(--ms-black);
+        transform: rotate3d(0, 0, 1, 45deg);
+        margin-right: 5px;
+        &.reverse {
+          transform: rotate3d(0, 0, 1, 225deg);
+        }
+      }
+      p {
+        margin: 0 5px;
+        font-weight: 600;
+      }
+    }
   }
 `;

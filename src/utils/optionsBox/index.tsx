@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-18 16:18:05
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-20 17:54:50
+ * @LastEditTime: 2023-12-22 15:08:40
  * @FilePath: \todo_list\src\components\mainPart\optionsBox\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,6 +12,7 @@ import styled, { CSSProperties } from "styled-components";
 interface PropType {
   $stateModel: [boolean, (target: boolean) => void];
   $title: string;
+  $boxStyle?: CSSProperties
   $optionInfo: OptionItem[];
   $clearOldState?: boolean;
 }
@@ -34,11 +35,11 @@ const OptionsBox = (props: PropType) => {
     <>
       {props.$stateModel[0] && (
         <StyledOptionsBox>
-          <div className="options-container">
+          <div className="options-container" style={props.$boxStyle}>
             <div className="options-title">{props.$title}</div>
             {[...props.$optionInfo].map((item) => {
               return (
-                <>
+                <div key={item.name}>
                   {item.needTopItem && <hr />}
                   <div
                     className="options-item"
@@ -51,7 +52,7 @@ const OptionsBox = (props: PropType) => {
                           props.$optionInfo.forEach((item) =>
                             item.optionModel![1](false)
                           );
-                        item.optionModel![1](!item.optionModel![0]);
+                        item.optionModel![1](true);
                       }
                       props.$stateModel[1](false);
                     }}
@@ -60,7 +61,7 @@ const OptionsBox = (props: PropType) => {
                     <p style={{flex: 1.1}}>{item.name}</p>
                     {item.rightText && <p>{item.rightText}</p>}
                   </div>
-                </>
+                </div>
               );
             })}
           </div>

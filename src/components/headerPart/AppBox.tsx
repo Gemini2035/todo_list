@@ -1,7 +1,7 @@
 /*
  * @Date: 2023-12-09 14:54:06
- * @LastEditors: Gemini2035 76091679+Gemini2035@users.noreply.github.com
- * @LastEditTime: 2023-12-09 17:03:03
+ * @LastEditors: gemini2035 2530056984@qq.com
+ * @LastEditTime: 2023-12-21 17:53:19
  * @FilePath: /todo_list/src/components/headerPart/AppBox.tsx
  */
 import styled from "styled-components";
@@ -23,7 +23,7 @@ const AppBox = () => {
             <AsideView
                 $showModel={[openDetail, changeOpenDetailState]}
                 $direction="left"
-                $style={{ height: '100vh', top: 0, width: '320px', backgroundColor: '#fff' }}
+                $style={{ height: '100vh', top: 0, width: '320px', backgroundColor: '#fff', zIndex: 2 }}
                 $position="fixed"
                 $childNode={<DetailContainer $onChange={changeOpenDetailState} />}
             />
