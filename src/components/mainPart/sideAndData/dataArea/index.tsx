@@ -32,5 +32,4 @@ const StyledMainArea = styled.div`
   display: flex;
   align-items: start;
   background-color: #faf9f8;
-  flex: 1.1;
 `;

@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-07 11:26:15
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-14 10:52:08
+ * @LastEditTime: 2023-12-22 16:50:01
  * @FilePath: \todo_list\src\utils\asideView\DragLine.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -35,6 +35,7 @@ const DragLine = (props: PropsType) => {
 
         const handleMouseUp = () => {
             setIsDragging(false);
+            console.log(position.current.offsetX)
             props.$onChange(position.current.offsetX, position.current.offsetY);
             Object.assign(position.current, { offsetX: 0, offsetY: 0 });
             setLineOffset(0);

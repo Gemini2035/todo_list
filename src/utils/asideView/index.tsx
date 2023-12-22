@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-07 09:29:23
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-18 17:32:31
+ * @LastEditTime: 2023-12-22 16:51:07
  * @FilePath: \todo_list\src\utils\asideView\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,7 +13,7 @@ import DragLine from './DragLine';
 interface PropsType {
     $height?: number,
     $width?: number,
-    $position?: 'absolute' | 'fixed',
+    $position?: 'absolute' | 'fixed' | 'relative',
     $direction?: 'left' | 'right',
     $draggable?: boolean,
     $buttonText?: string,
@@ -40,9 +40,10 @@ class AsideView extends Component<PropsType, StateType> {
     private handleChange = (offsetX: number) => this.setState({ width: Math.max(300, (Math.min(window.innerWidth * 0.9, (this.state.width - offsetX)))) })
 
     render(): ReactNode {
+        console.log(this.state.width)
         return (
             this.props.$showModel[0] && (
-                <StyledAsideView {...this.props} style={Object.assign({...this.props.$style} || {}, { width: this.state.width })}>
+                <StyledAsideView {...this.props} style={Object.assign({...this.props.$style} || {}, { width: this.state.width, minWidth: this.state.width })}>
                     {this.props.$showButton && (
                         <p className='close-button' onClick={() => this.props.$showModel[1](false)}>
                             {this.props.$buttonText ? this.props.$buttonText : 'X'}
