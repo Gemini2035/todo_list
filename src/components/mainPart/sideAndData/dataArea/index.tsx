@@ -30,6 +30,7 @@ export default MainArea;
 
 const StyledMainArea = styled.div`
   display: flex;
+  width: 100%;
   align-items: start;
   background-color: #faf9f8;
 `;

@@ -35,7 +35,6 @@ const DragLine = (props: PropsType) => {
 
         const handleMouseUp = () => {
             setIsDragging(false);
-            console.log(position.current.offsetX)
             props.$onChange(position.current.offsetX, position.current.offsetY);
             Object.assign(position.current, { offsetX: 0, offsetY: 0 });
             setLineOffset(0);

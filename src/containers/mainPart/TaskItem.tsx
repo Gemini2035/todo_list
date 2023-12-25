@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-18 16:12:56
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-20 15:04:26
+ * @LastEditTime: 2023-12-25 17:07:05
  * @FilePath: \todo_list\src\components\mainPart\taskItem\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -13,10 +13,10 @@ import { changeTask } from "../../store/taskModule";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { RootStoreType, AppDispatch } from "../../store";
 import { TaskInfo } from "../../store/taskModule/taskModule";
-import HoverTips from "../../utils/hoverTips";
 import timeFormatter from "../../utils/hooks/timeFormatter";
 import StateDot from "../../utils/stateDot";
 import timeCompare from "../../utils/hooks/timeCompare";
+import MarkedIcon from "../../utils/markedIcon";
 
 interface PropInfo {
   $key?: number;
@@ -65,7 +65,7 @@ const TaskItem = (props: PropInfo) => {
               <span>{taskInfo.group ? taskInfo.group : "任务"}</span>
               <span className="divider-dot">·</span>
             </div>
-            {taskInfo.steps && taskInfo.steps.length && (
+            {taskInfo.steps && taskInfo.steps.length !== 0 && (
               <div className="tag-item">
                 <span>{`第 ${
                   taskInfo.steps.filter((item) => item.hasDone).length
@@ -168,7 +168,7 @@ const TaskItem = (props: PropInfo) => {
                 <span className="divider-dot">·</span>
               </div>
             )}
-            {taskInfo.classify && taskInfo.classify.length && (
+            {taskInfo.classify && taskInfo.classify.length !== 0 && (
               <div className="tag-item">
                 {taskInfo.classify.map((item) => {
                   return (
@@ -176,7 +176,7 @@ const TaskItem = (props: PropInfo) => {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        color: item.key,
+                        color: taskInfo.hasDone? '#CCC' : item.key,
                       }}
                       key={item.key}
                     >
@@ -189,25 +189,12 @@ const TaskItem = (props: PropInfo) => {
             )}
           </div>
         </div>
-        <HoverTips
-          $direction="topMiddle"
-          $context={taskInfo.isMarked ? "删除重要性。" : "将任务标记为重要。"}
-          $delayTime={600}
-          $innerNode={
-            <div className="mark" onClick={(e) => changeState(e, "mark")}>
-              <svg
-                aria-hidden="true"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-                focusable="false"
-              >
-                <path d="M9.1 2.9a1 1 0 011.8 0l1.93 3.91 4.31.63a1 1 0 01.56 1.7l-3.12 3.05.73 4.3a1 1 0 01-1.45 1.05L10 15.51l-3.86 2.03a1 1 0 01-1.45-1.05l.74-4.3L2.3 9.14a1 1 0 01.56-1.7l4.31-.63L9.1 2.9z"></path>
-              </svg>
-            </div>
-          }
-        />
+        <div onClick={(e) => changeState(e, "mark")}>
+          <MarkedIcon
+            $isMarked={taskInfo.isMarked || false}
+            $theme={props.$theme || ""}
+          />
+        </div>
       </NavLink>
     </StyledTaskItem>
   );
@@ -277,18 +264,6 @@ const StyledTaskItem = styled.div<StyledPropInfo>`
             }
           }
         }
-      }
-    }
-    .mark {
-      svg {
-        stroke: ${(props) =>
-          props.$theme ? props.$theme : "var(--ms-main-blue-light)"};
-        fill: ${(props) =>
-          props.$isMarked
-            ? props.$theme
-              ? props.$theme
-              : "var(--ms-main-blue-light)"
-            : "transparent"};
       }
     }
     &.active {

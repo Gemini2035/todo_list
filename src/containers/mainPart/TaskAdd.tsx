@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-20 15:05:47
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-21 16:50:38
+ * @LastEditTime: 2023-12-25 17:18:30
  * @FilePath: \todo_list\src\containers\mainPart\TaskAdd.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -35,7 +35,9 @@ const TaskAdd = (props: PropType) => {
   const [duplyTypeState, setDuplyTypeState] = useState(false);
   const [duplyTypeInfo, setDuplyTypeInfo] = useState("");
 
-  const clickHandle = (target: number) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const clickHandle = (e: any, target: number) => {
+    e.preventDefault();
     setDeadTimeState(false);
     setRemindTimeState(false);
     setDuplyTypeState(false);
@@ -91,7 +93,12 @@ const TaskAdd = (props: PropType) => {
           value={taskName}
           onChange={(e) => setTaskName(e.target.value)}
           onFocus={() => setActiveState(true)}
-          onBlur={() => setActiveState(false)}
+          onBlur={() => {
+            setDeadTimeState(false);
+            setDuplyTypeState(false);
+            setRemindTimeState(false);
+            setActiveState(false);
+          }}
         />
       </div>
       {activeState && (
@@ -104,7 +111,7 @@ const TaskAdd = (props: PropType) => {
                 $delayTime={600}
                 $innerNode={
                   <div
-                    onClick={() => clickHandle(0)}
+                    onMouseDown={e => clickHandle(e, 0)}
                     className="box-item deadtime"
                   >
                     <svg
@@ -141,7 +148,7 @@ const TaskAdd = (props: PropType) => {
                 $innerNode={
                   <div
                     className="box-item remind"
-                    onClick={() => clickHandle(1)}
+                    onMouseDown={e => clickHandle(e, 1)}
                   >
                     <svg
                       fill="currentColor"
@@ -177,7 +184,7 @@ const TaskAdd = (props: PropType) => {
                 $innerNode={
                   <div
                     className="box-item remind"
-                    onClick={() => clickHandle(2)}
+                    onMouseDown={e => clickHandle(e, 2)}
                   >
                     <svg
                       fill="currentColor"

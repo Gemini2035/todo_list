@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-19 10:11:30
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-22 15:46:11
+ * @LastEditTime: 2023-12-25 17:08:57
  * @FilePath: \todo_list\src\components\mainPart\sideAndData\dataArea\todayData\TodayDataList.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -26,8 +26,14 @@ interface PropType {
 
 const TodayData = (props: PropType) => {
   const taskData = useSelector((store: RootStoreType) => {
-    const initData = store.taskReducer;
-    if (!props.$sortActive) return store.taskReducer;
+    const initData = store.taskReducer.filter((item) => !item.hasDone);
+    if (!props.$sortActive)
+      return store.taskReducer.filter(
+        (item) =>
+          item.isToday ||
+          new Date().setHours(0, 0, 0, 0) ===
+            new Date(item.deadTime || 0).setHours(0, 0, 0, 0)
+      );
     let result = [];
     switch (props.$sortActive.key) {
       case 0:
@@ -59,6 +65,10 @@ const TodayData = (props: PropType) => {
     }
     return props.$reverse ? result : result.reverse();
   }, shallowEqual);
+  const completedData = useSelector(
+    (store: RootStoreType) => store.taskReducer.filter((item) => item.hasDone),
+    shallowEqual
+  );
 
   return (
     <StyledTodayData>
@@ -97,9 +107,16 @@ const TodayData = (props: PropType) => {
       ) : (
         <>
           {taskData.map((item) => {
-            return <TaskItem key={item.key} $key={item.key} />;
+            return item.hasDone ? (
+              <></>
+            ) : (
+              <TaskItem key={item.key} $key={item.key} />
+            );
           })}
         </>
+      )}
+      {completedData.length !== 0 && (
+        <GroupList $data={completedData} $title="已完成" />
       )}
     </StyledTodayData>
   );
