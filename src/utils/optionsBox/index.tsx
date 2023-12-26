@@ -106,6 +106,7 @@ const StyledOptionsBox = styled.div`
       padding: 0 16px 0 12px;
       font-size: 0.875rem;
       margin-bottom: 5px;
+      color: var(--ms-black);
       p {
         padding: 0 4px;
         margin-left: 5px;

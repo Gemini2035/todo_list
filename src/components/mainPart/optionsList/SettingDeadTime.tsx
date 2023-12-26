@@ -2,12 +2,12 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-20 16:53:22
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-21 14:47:14
+ * @LastEditTime: 2023-12-26 10:20:42
  * @FilePath: \todo_list\src\components\mainPart\optionsList\settingDeadTime.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { useEffect, useRef, useState } from "react";
-import styled from "styled-components";
+import styled, { CSSProperties } from "styled-components";
 import timeFormatter from "../../../utils/hooks/timeFormatter";
 import OptionsBox from "../../../utils/optionsBox";
 
@@ -16,6 +16,7 @@ interface PropType {
   $showState: boolean;
   $setShowState: (target: boolean) => void;
   $couldDelete: boolean;
+  $style?: CSSProperties
 }
 
 const DeadTime = (props: PropType) => {
@@ -156,7 +157,7 @@ const DeadTime = (props: PropType) => {
     console.log(new Date(deadTime).toLocaleString());
   }, [activeIndex, props]);
   return (
-    <div style={{position: "relative"}}>
+    <div style={props.$style}>
       <OptionsBox
         $stateModel={[props.$showState, props.$setShowState]}
         $title="截止"

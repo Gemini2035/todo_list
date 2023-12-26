@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-22 17:19:41
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-25 16:37:21
+ * @LastEditTime: 2023-12-26 14:19:38
  * @FilePath: \todo_list\src\containers\mainPart\NameAndSteps.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -167,6 +167,9 @@ const StyledNameAndSteps = styled.div`
     display: flex;
     align-items: center;
     padding: 16px;
+    &:hover {
+      background-color: var(--ms-button-hover);
+    }
     .task-input {
       padding: 0 16px;
       flex: 1.1;
@@ -183,6 +186,7 @@ const StyledNameAndSteps = styled.div`
   .input-item {
     display: flex;
     align-items: center;
+    margin-left: 6px;
     padding: 16px;
     .input {
       padding: 0 16px;

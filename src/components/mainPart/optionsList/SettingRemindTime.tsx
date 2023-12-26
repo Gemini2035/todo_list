@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import timeFormatter from "../../../utils/hooks/timeFormatter";
 import OptionsBox from "../../../utils/optionsBox";
+import { CSSProperties } from "styled-components";
 
 interface PropType {
   $setResult: (target: number) => void;
   $showState: boolean;
   $setShowState: (target: boolean) => void;
   $couldDelete: boolean;
+  $style?: CSSProperties
 }
 
 const RemindTime = (props: PropType) => {
@@ -174,7 +176,7 @@ const RemindTime = (props: PropType) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeIndex, props]);
   return (
-    <div style={{ position: "relative" }}>
+    <div style={props.$style}>
       <OptionsBox
         $stateModel={[props.$showState, props.$setShowState]}
         $title="提醒"

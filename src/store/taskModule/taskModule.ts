@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-13 17:14:28
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-25 16:06:05
+ * @LastEditTime: 2023-12-26 11:47:44
  * @FilePath: \todo_list\src\store\taskModule\taskModule.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -78,7 +78,7 @@ const initData: TaskInfo[] = [
       { key: 'purple', name: '紫色类别' }
     ],
     fileList: ["111", "222"],
-    deadTime: 1702957005411 + 1101000000,
+    deadTime: 1702957005411 + 11101000000,
     remindMe: 1702957005411 + 500000,
     group: undefined,
     tips: "测试备注功能",

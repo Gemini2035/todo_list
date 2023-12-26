@@ -8,16 +8,19 @@
  */
 import { useEffect, useRef, useState } from "react";
 import OptionsBox from "../../../utils/optionsBox";
+import { CSSProperties } from "styled-components";
 
 interface PropType {
   $setResult: (target: string) => void;
   $showState: boolean;
   $setShowState: (target: boolean) => void;
   $couldDelete: boolean;
+  $style?: CSSProperties
 }
 
 const DuplyType = (props: PropType) => {
   const datePickerRef = useRef<HTMLInputElement>(null);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const optionsList = [
     {
       icon: (
@@ -150,24 +153,24 @@ const DuplyType = (props: PropType) => {
   ];
   const activeIndex = optionsList.findIndex((item) => item.optionModel[0]);
   useEffect(() => {
-    let deadTime = "";
+    let duplyType = "";
     switch (activeIndex) {
       case -1:
         return;
       case 0:
-        deadTime = "每天";
+        duplyType = "每天";
         break;
       case 1:
-        deadTime = "工作日";
+        duplyType = "工作日";
         break;
       case 2:
-        deadTime = "每周";
+        duplyType = "每周";
         break;
       case 3:
-        deadTime = "每月";
+        duplyType = "每月";
         break;
       case 4:
-        deadTime = "每年";
+        duplyType = "每年";
         break;
       case 5:
         try {
@@ -181,12 +184,10 @@ const DuplyType = (props: PropType) => {
       case 6:
         props.$setResult("");
     }
-    props.$setResult(deadTime);
-    console.log(new Date(deadTime).toLocaleString());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeIndex, props]);
+    props.$setResult(duplyType);
+  }, [activeIndex, optionsList, props]);
   return (
-    <div style={{ position: "relative" }}>
+    <div style={props.$style}>
       <OptionsBox
         $stateModel={[props.$showState, props.$setShowState]}
         $title="提醒"
