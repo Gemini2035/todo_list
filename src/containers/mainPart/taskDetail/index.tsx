@@ -2,7 +2,7 @@
  * @Author: gemini2035 2530056984@qq.com
  * @Date: 2023-12-14 15:15:23
  * @LastEditors: gemini2035 2530056984@qq.com
- * @LastEditTime: 2023-12-26 16:13:12
+ * @LastEditTime: 2023-12-27 09:19:00
  * @FilePath: \todo_list\src\components\mainPart\TaskDetail.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -17,7 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { RootStoreType, AppDispatch } from "../../../store";
 import { TaskInfo } from "../../../store/taskModule/taskModule";
-import FileGroup from "./fileGroup";
+import FileGroup from "./FileGroup";
 import TipsInput from "./TipsInput";
 import timeFormatter from "../../../utils/hooks/timeFormatter";
 import HoverTips from "../../../utils/hoverTips";
